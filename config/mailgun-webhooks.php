@@ -17,8 +17,7 @@ return [
      */
     'jobs' => [
         'delivered' => \App\Jobs\MailgunWebhookHandle::class,
-        'permanent_fail' => \App\Jobs\MailgunWebhookHandle::class,
-        'temporary_fail' => \App\Jobs\MailgunWebhookHandle::class,
+        'failed' => \App\Jobs\MailgunWebhookHandle::class,
     ],
 
     /*

@@ -1,6 +1,7 @@
 <div>
     <section class="relative py-6 bg-white bg-gray-200 min-w-screen animation-fade animation-delay">
-        <div class="container h-full max-w-5xl mx-auto overflow-hidden rounded-lg shadow">
+        <div class="container h-full max-w-5xl mx-auto overflow-hidden rounded-lg">
+            <h1 class="text-2xl w-full mb-4 mt-4 font-bold">Send a Message</h1>
             @if ($success)
                 <div class="inline-flex w-full ml-3 overflow-hidden bg-white rounded-lg shadow-sm">
                     <div class="flex items-center justify-center w-12 bg-green-500">

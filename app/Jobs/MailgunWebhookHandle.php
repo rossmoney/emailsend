@@ -34,7 +34,8 @@ class MailgunWebhookHandle implements ShouldQueue
                 ->where('swift_message_id', $payload['event-data']['message']['headers']['message-id']) //better match
                 ->first();
 
-        //Log::debug($payload['event-data']['recipient'],$payload['event-data']['message']['headers']['message-id'] );
+        //Log::debug($payload['event-data']['recipient'] );
+        //Log::debug($payload['event-data']['message']['headers']['message-id']);
 
         if (!empty($message)) {
             $message->mailgun_status = $payload['event-data']['event'];
