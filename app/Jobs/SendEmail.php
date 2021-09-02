@@ -46,16 +46,13 @@ class SendEmail implements ShouldQueue
      */
     public function handle()
     {
-        //try 
-        //{
-            $status = 'delivered';
-
+        try 
+        {
             Mail::to($this->recipientEmail)
                 ->send(new MessageMailable($this->sender, $this->subject, $this->message));
 
-        //} catch (\Exception $e) {
-        //    $status = 'permanent_fail';
-        //}
+        } catch (\Exception $e) {
+        }
         
         Message::create([
             'recipient_email' => $this->recipientEmail,
@@ -63,7 +60,6 @@ class SendEmail implements ShouldQueue
             'subject' => $this->subject,
             'body' => $this->message,
             'timestamp' => Carbon::now()->format('Y-m-d H:i'),
-            'mailgun_status' => $status
         ]);
     }
 }

@@ -27,9 +27,11 @@ class MailgunWebhookHandle implements ShouldQueue
     {
         $payload = $this->webhookCall->payload;
 
-        $message = Message::where('subject', $payload['event-data']['message']['headers']['subject'])
-                ->where('recipient_email', $payload['event-data']['recipient'])
-                ->whereBetween('timestamp', [Carbon::now()->subMinutes(5)->format('Y-m-d H:i:s'), Carbon::now()->format('Y-m-d H:i:s')])
+        $message = Message::where('recipient_email', $payload['event-data']['recipient'])
+                ->whereBetween('timestamp', [
+                    Carbon::now()->subMinutes(3)->format('Y-m-d H:i:s'), 
+                    Carbon::now()->format('Y-m-d H:i:s')])
+                ->orderBy('created_at', 'DESC')
                 ->first();
 
         if (!empty($message)) {

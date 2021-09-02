@@ -25,7 +25,7 @@
                             @error('message')
                                 <p class="text-red-500 mt-1">{{ $message }}</p>
                             @enderror
-                            <textarea wire:model="message" row="4" class="w-full h-40 px-5 py-3 border border-gray-400 rounded-lg outline-none focus:shadow-outline" name="message" placeholder="Your message here...">{{ old('message') }}</textarea>
+                            <textarea wire:model="message" row="4" maxlength="140" class="w-full h-40 px-5 py-3 border border-gray-400 rounded-lg outline-none focus:shadow-outline" name="message" placeholder="Your message here...">{{ old('message') }}</textarea>
                         </div>
                         <div class="pt-3">
                             <button class="flex px-6 py-3 text-white bg-indigo-500 rounded-md hover:bg-indigo-600 hover:text-white focus:outline-none focus:shadow-outline focus:border-indigo-300" type="submit">
