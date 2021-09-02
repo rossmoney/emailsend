@@ -39,7 +39,7 @@ class ContactForm extends Component
     {
         $this->name = '';
         $this->email = '';
-        $this->comment = '';
+        $this->message = '';
     }
 
     public function render()

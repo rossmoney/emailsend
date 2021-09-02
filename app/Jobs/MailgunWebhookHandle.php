@@ -7,9 +7,9 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Spatie\WebhookClient\Models\WebhookCall;
 
-use Carbon\Carbon;
-
 use App\Models\Message;
+
+use Illuminate\Support\Facades\Log;
 
 class MailgunWebhookHandle implements ShouldQueue
 {
@@ -33,6 +33,8 @@ class MailgunWebhookHandle implements ShouldQueue
                     Carbon::now()->format('Y-m-d H:i:s')])*/
                 ->where('swift_message_id', $payload['event-data']['message']['headers']['message-id']) //better match
                 ->first();
+
+        //Log::debug($payload['event-data']['recipient'],$payload['event-data']['message']['headers']['message-id'] );
 
         if (!empty($message)) {
             $message->mailgun_status = $payload['event-data']['event'];
