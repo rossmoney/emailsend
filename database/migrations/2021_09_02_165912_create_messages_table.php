@@ -22,6 +22,7 @@ class CreateMessagesTable extends Migration
             $table->timestamp('timestamp');
             $table->set('mailgun_status', ['delivered','permanent_fail','temporary_fail'])->nullable();
             $table->json('mailgun_payload')->nullable();
+            $table->string('swift_message_id')->nullable();
             $table->timestamps();
         });
     }

@@ -46,20 +46,23 @@ class SendEmail implements ShouldQueue
      */
     public function handle()
     {
-        try 
-        {
+        //try 
+        //{
+            $messageRecord = Message::create([
+                'recipient_email' => $this->recipientEmail,
+                'sender_email' => $this->sender->email, 
+                'subject' => $this->subject,
+                'body' => $this->message,
+                'timestamp' => Carbon::now()->format('Y-m-d H:i')
+            ]);
+            
             Mail::to($this->recipientEmail)
-                ->send(new MessageMailable($this->sender, $this->subject, $this->message));
+                ->send(new MessageMailable($this->sender, $this->subject, $this->message, $messageRecord));
 
-        } catch (\Exception $e) {
-        }
-        
-        Message::create([
-            'recipient_email' => $this->recipientEmail,
-            'sender_email' => $this->sender->email, 
-            'subject' => $this->subject,
-            'body' => $this->message,
-            'timestamp' => Carbon::now()->format('Y-m-d H:i'),
-        ]);
+       // } catch (\Exception $e) {
+           // if (!empty($messageRecord))
+           //     $messageRecord->update(['mailgun_status' => 'permanent_fail']);
+        //}
+
     }
 }
