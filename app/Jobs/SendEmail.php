@@ -9,6 +9,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Spatie\RateLimitedMiddleware\RateLimited;
 
 use Carbon\Carbon;
 
@@ -64,5 +65,15 @@ class SendEmail implements ShouldQueue
            //     $messageRecord->update(['mailgun_status' => 'permanent_fail']);
         //}
 
+    }
+
+    public function middleware()
+    {
+        $rateLimitedMiddleware = (new RateLimited())
+            ->allow(1)
+            ->everySeconds(15)
+            ->releaseAfterSeconds(300);
+            
+        return [$rateLimitedMiddleware];
     }
 }
