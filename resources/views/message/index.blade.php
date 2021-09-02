@@ -27,7 +27,7 @@
             {!! 
             (isset($payload['event-data']['envelope']['sending-ip']) ? '<b>Sending IP:</b> ' . $payload['event-data']['envelope']['sending-ip'] . '<br>' : '') . 
             (isset($payload['event-data']['timestamp']) ? '<b>Server Time:</b> ' . \Carbon\Carbon::parse($payload['event-data']['timestamp'])->format('H:i'). '<br>' : '') .
-            (isset($payload['event-data']['timestamp']) ? '<b>@swift.generated:</b> ' . str_replace("@swift.generated", "", $payload['event-data']['message']['headers']['message-id']) . '<br>' : '')
+            (isset($payload['event-data']['timestamp']) ? '<b>Message ID:</b> ' . str_replace("@swift.generated", "", $payload['event-data']['message']['headers']['message-id']) . '<br>' : '')
             !!}
             <br>
             @if(!empty($payload))
